@@ -5,6 +5,15 @@ body {
     color: #333;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+h4, h5, h6 {
+  padding: .2em;
+  width: 90%;
+  border-bottom: 1px dotted #ccc;
+}
+
 a img {
     border: 0;
 }

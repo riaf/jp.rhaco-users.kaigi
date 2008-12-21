@@ -4,6 +4,10 @@ Rhaco::import("model.table.EventTable");
  * 
  */
 class Event extends EventTable{
+    function beforeUpdate(){
+        $this->updated = time();
+        return true;
+    }
     function isActive($db){
         if($this->private)
             return ExceptionTrigger::raise(new GenericException('このイベントに参加することは出来ません'));
