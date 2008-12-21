@@ -52,6 +52,9 @@ div.section p {
   margin: 0 5px;
   padding: 0;
 }
+.footnote {
+  font-size: small;
+}
 
 dl.member {
     border: 1px solid #ccc;
