@@ -17,6 +17,6 @@ if($flow->isPost() && $flow->isVariable('pass')){
         Header::redirect(Rhaco::url());
     }
 }
-
+$flow->setVariable('hatena', Rhaco::obj('HatenaSyntax', array('headlevel' => 4, 'id' => 'event_description')));
 $flow->write('cancel.html');
 

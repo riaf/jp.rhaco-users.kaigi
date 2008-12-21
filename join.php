@@ -13,4 +13,5 @@ if($flow->isPost() && $flow->isVariable('answer') && strtolower($flow->getVariab
     }
 } else ExceptionTrigger::raise(new GenericException('登録に失敗しました'));
 $flow->setVariable('event', $db->get(new Event(), new C(Q::depend(), Q::eq(Event::columnId(), Rhaco::constant('CURRENT_EVENT', 1)))));
+$flow->setVariable('hatena', Rhaco::obj('HatenaSyntax', array('headlevel' => 4, 'id' => 'event_description')));
 $flow->write('index.html');

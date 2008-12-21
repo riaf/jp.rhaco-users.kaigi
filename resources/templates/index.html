@@ -25,7 +25,7 @@
             <div class="entry">
                 <h3>{$event.name}</h3>
                 <p class="description">
-                    {$event.description}
+                    {$hatena.parse($event.description)}
                 </p>
                 <p class="meta">
                   参加可能人数: {$event.maxParticipant}人 / 
@@ -47,6 +47,7 @@
                 </p>
                 </rt:if>
             </div>
+            <ifnot param="{$event.private}">
             <div class="entry" id="event-entry">
                 <h3>参加登録</h3>
                 <p>何かあったときの連絡とかにメール欲しい人はメールアドレスも入れてくださいな</p>
@@ -66,6 +67,7 @@
                     </dl>
                 </form>
             </div>
+            </rt:ifnot>
           </rt:block>
         </div>
         
