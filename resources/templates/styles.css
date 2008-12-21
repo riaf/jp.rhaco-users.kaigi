@@ -44,6 +44,15 @@ p.info {
     line-height: 1.2em;
 }
 
+div.section {
+  margin-left: 10px;
+}
+div.section p {
+  line-height: 1.3em;
+  margin: 0 5px;
+  padding: 0;
+}
+
 dl.member {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -181,6 +190,7 @@ div#main div.entry {
     padding-right: 10px;
     border-bottom: solid 5px #eee;
 }
+
 div#main div.entry p.meta {
     text-align: right;
     font-size: small;
