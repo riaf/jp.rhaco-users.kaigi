@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<link rel="stylesheet" type="text/css" media="all" href="styles.css" />
+	<title>rhaco kaigi</title>
+</head>
+<body id="rhaco-kaigi">
+<div id="wrapper">
+
+    <div id="headbar">
+        <h1><a href="/"><img src="images/h-logo.png" alt="rhaco kaigi" /></a></h1>
+        <p>by rhaco-users.jp</p>
+    </div>
+    
+    <div id="header">
+        <h2>{$rhaco.constant('HEAD_TITLE')}</h2>
+        <p class="description">{$rhaco.constant('HEAD_MSG')}</p>
+    </div>
+    
+    <div id="contents">
+        <div id="main">
+          <rt:invalid />
+          <rt:block name="main">
+            <div class="entry">
+                <h3>{$event.name}</h3>
+                <p class="description">
+                    {$event.description}
+                </p>
+                <p class="meta">
+                  参加可能人数: {$event.maxParticipant}人 / 
+                  参加登録期限: {$f.dateformat($event.periodDate, 'Y.m.d H:i')} / 
+                  Last Updated: {$f.dateformat($event.updated, 'Y.m.d H:i')}</p>
+            </div>
+            <div class="entry">
+                <h3>参加者</h3>
+                <rt:if param="{$event.dependParticipants}">
+                <dl class="member">
+                  <rt:loop param="{$event.dependParticipants}" var="p">
+                    <dt><span class="n">{$f.escape($p.name)}</span><span class="d">{$f.dateformat($p.date)} [<a href="{$rhaco.page('cancel')}?id={$p.id}" title="キャンセル">x</a>]</span></dt>
+                    <dd>{$f.escape($p.comment)}</dd>
+                  </rt:loop>
+                </dl>
+                <rt:else />
+                <p>
+                  現在、参加者はいません。
+                </p>
+                </rt:if>
+            </div>
+            <div class="entry" id="event-entry">
+                <h3>参加登録</h3>
+                <p>何かあったときの連絡とかにメール欲しい人はメールアドレスも入れてくださいな</p>
+                <rt:invalid />
+                <form action="{$rhaco.page('join')}" method="post">
+                  <input type="hidden" value="{$event.id}" name="event" />
+                    <dl>
+                        <dt>おなまえ</dt>
+                        <dd><input type="text" name="name" rt:reference="true" /></dd>
+                        <dt>メールアドレス</dt>
+                        <dd><input type="text" name="mail" rt:reference="true" /></dd>
+                        <dt>コメント</dt>
+                        <dd><input type="text" name="comment" rt:reference="true" /></dd>
+                        <dt>{$rhaco.constant('QUESTION')}</dt>
+                        <dd><input type="text" name="answer" value="" rt:reference="true" />
+                        <dd><input type="submit" value="参加" /></dd>
+                    </dl>
+                </form>
+            </div>
+          </rt:block>
+        </div>
+        
+        <div id="sub">
+            <!-- timer -->
+            <div id="dlt">
+              <p class="title">rhaco kaigiまであと</p>
+              <p id="dlt-timer"></p>
+              <p class="powered"><a href="http://deadlinetimer.com/" target="_blank">inspired deadlinetimer.com</a></p>
+            </div>
+            <!-- stylesheet -->
+            <style type="text/css">
+              #dlt {
+                text-align: center;
+                font-size: 20px;
+                width: 200px;
+                border: 1px solid #ccc;
+                background: #eee;
+                padding: 0;
+              }
+              #dlt .title {
+                margin: 0;
+                background: #333;
+                color: #eee;
+                font-size: 16px;
+                font-weight: bold;
+              }
+              #dlt .powered {
+                text-align: right;
+                font-size: 12px;
+                margin: 0 5px;
+              }
+              #dlt #dlt-timer {
+                margin: 0;
+              }
+              #dlt #dlt-timer .day, #dlt #dlt-timer .hour, #dlt #dlt-timer .minute {
+                margin: 0 2.5px;
+              }
+              #dlt #dlt-timer .sec, #dlt #dlt-timer .msec {
+                font-size: 25px;
+              }
+              #dlt #dlt-timer .dlt-ac {
+                font-size: 30px;
+                font-weight: bold;
+                color: #ff1493;
+              }
+              #dlt #dlt-timer .finish {
+                font-size: 30px;
+                font-weight: bold;
+                color: #f00;
+              }
+            </style>
+
+            <!-- javascript -->
+            <script type="text/javascript">
+            window.onload = function(){
+              var dlt = document.getElementById('dlt');
+              var area = document.getElementById('dlt-timer');
+              var timer = setInterval(
+                function (){
+                  var to = new Date();
+                  var from = new Date(2009, 0, 17, 14, 00, 00 );
+
+                  if (to.getTime() > from.getTime()) {
+                    area.innerHTML = '<span class="finish">＼(＾o＾)／</span>';
+                    clearInterval(timer);
+                    return 0;
+                  }
+                  var ts = Math.floor(to.getTime() / 1000);
+                  var ts_diff = Math.floor(from.getTime() / 1000) - ts;
+
+                  var d = Math.floor(ts_diff/(24*60*60));
+                  var h = Math.floor(ts_diff%(24*60*60)/(60*60));
+                  var m = Math.floor(ts_diff%(24*60*60)/60) % 60;
+                  var s = (Math.floor(ts_diff%(24*60*60)) % 60 % 60).toString();
+                  var ms = Math.floor((1000 - to.getMilliseconds() / 100)).toString();
+                  var extra_class = (d == 0) ? 'dlt-ac': '';
+                  area.innerHTML = 
+                    '<span class="'+ extra_class +'">'
+                    + ((d == 0)? '' : '<span class="day">'+ d.toString() +'日</span>')
+                    + ((h == 0)? '' : '<span class="hour">'+  h.toString() +'時間</span>')
+                    + '<span class="minute">'+ m.toString() +'分</span><br />'
+                    + '<span class="sec">'+ ('00' + s).substr(s.length, 2) +'.</span>'
+                    + '<span class="msec">'+ ('0' +ms).substr(ms.length, 1) +'秒</span>'
+                    + '</span>';
+                },
+                100
+              );
+            }
+            </script>
+            <!-- /timer -->
+            
+            <p class="info">rhaco kaigi 参加者募集をしてみます。<br />
+            詳細決まってないのに参加者募集するとかどうなってるんですかね！</p>
+            <ul class="navi">
+                <li><a href="http://rhaco-users.jp/">rhaco-users</a></li>
+                <li><a href="#event-entry">参加登録</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="footer">
+        <address><a href="http://rhaco-users.jp/">Powered by rhaco-users.jp</a></address>
+    </div>
+
+</div>
+<script src="http://stds.riaf.jp/say.no.to.ie.6.js"></script>
+</body>
+</html>

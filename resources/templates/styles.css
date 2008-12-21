@@ -1,0 +1,188 @@
+body {
+    background: #eee;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+a img {
+    border: 0;
+}
+
+a {
+    color: #708090;
+}
+a:visited {
+    color: #b0c4de;
+}
+dl dt {
+    font-weight: bold;
+    border-bottom: dotted 1px #ddd;
+    margin: 3px 0;
+}
+
+.exceptions {
+    color: red;
+}
+
+p.info {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 5px;
+    background: #eee;
+    line-height: 1.2em;
+}
+
+dl.member {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 10px;
+    margin: 1em;
+}
+dl.member dt .n {
+    font-weight: bold;
+    padding-right: 10px;
+}
+dl.member dt .d {
+    font-size: small;
+}
+
+ul.navi {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ul.navi li a {
+    display: block;
+    width: 196px;
+    height: 30px;
+    background: #efefef;
+    font-size: 16px;
+    padding: 7px 0 0 5px;
+    border: 1px #ddd solid;
+}
+ul.navi li a:hover {
+    background: #ddd;
+}
+
+form {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+form dl dt {
+    font-weight: bold;
+}
+form input[type=text] {
+    font-size: 100%;
+    width: 300px;
+}
+form input[type=submit] {
+    font-size: 100%;
+    width: 5em;
+}
+form dl dd input[name=comment] {
+    font-size: 100%;
+    width: 500px;
+}
+
+div#wrapper {
+    background: #fff;
+    width: 90%;
+    min-width: 700px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+div#headbar {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    position: relative;
+    height: 30px;
+}
+div#headbar h1 {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    width: 97px;
+    height: 20px;
+}
+div#headbar h1 a, div#headbar h1 a img {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+div#headbar p {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    font-size: 12px;
+    color: #ccc;
+}
+
+div#header {
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding: 5px 15px;
+    background: #eee;
+}
+div#header p.description {
+    margin-left: 1em;
+}
+
+div#contents {
+    margin: 10px;
+}
+div#contents div#main {
+    padding: 0;
+    margin: 0; 
+    float: left;
+    width: 100%;
+    margin-right: -200px;
+    margin-bottom: 10px;
+}
+div#contents div#main > * {
+    margin-right: 200px;
+}
+div#contents div#sub {
+    float: left;
+    width: 200px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+div#main div.entry {
+    margin: 0 5px;
+    padding-right: 10px;
+    border-bottom: solid 5px #eee;
+}
+div#main div.entry p.meta {
+    text-align: right;
+    font-size: small;
+}
+
+div#footer {
+    clear: left;
+    padding: 20px 0;
+    background: #ddd;
+    text-align: center;
+}
+div#footer address {
+    font-style: normal;
+}

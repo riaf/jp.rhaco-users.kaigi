@@ -1,0 +1,9 @@
+イベント参加申し込みありがとうございます！
+
+あなたのキャンセル用パスワードは
+{$participant.hash}
+です。
+
+----
+[rhaco kaigi]
+  http://rhaco-users.jp

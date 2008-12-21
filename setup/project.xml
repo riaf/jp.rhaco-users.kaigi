@@ -1,0 +1,41 @@
+<project rhacover="1.6.1" version="0.0.1" name="rhaco kaigi" xmlns="http://rhaco.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://rhaco.org http://m.rhaco.org/xsd/project_1_6_1.xsd">
+    <input name="CURRENT_EVENT">
+        <title>current event id</title>
+        <data>1</data>
+    </input>
+    <input name="HEAD_TITLE">
+        <title>header title</title>
+    </input>
+    <input name="HEAD_MSG">
+        <title>header message</title>
+    </input>
+    <input name="QUESTION">
+        <title>問題</title>
+        <data>rhaco-users.jp がサポートしている PHPライブラリの名前は？</data>
+    </input>
+    <input name="ANSWER">
+        <title>答え</title>
+        <data>rhaco</data>
+    </input>
+    <database name="kaigi">
+        <table name="event">
+            <column name="id" />
+            <column name="name" />
+            <column name="description" type="text" />
+            <column name="date" type="timestamp" />
+            <column name="period_date" type="timestamp" />
+            <column name="max_participant" type="int" default="20" />
+            <column name="private" type="bool" default="true" />
+            <column name="updated" type="timestamp" default="sysdate" />
+        </table>
+        <table name="participant">
+            <column name="id" />
+            <column name="event" type="int" reference="event.id" />
+            <column name="name" label="名前" max="50" size="50" min="1" require="true" />
+            <column name="mail" type="mail" />
+            <column name="comment" max="255" size="255" />
+            <column name="hash" />
+            <column name="date" type="timestamp" default="sysdate" />
+        </table>
+    </database>
+</project>

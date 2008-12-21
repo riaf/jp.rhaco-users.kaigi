@@ -1,0 +1,16 @@
+<rt:extends href="index.html" />
+<rt:block name="main">
+<div class="entry">
+    <h3>参加登録しました</h3>
+    <p class="description">
+        <p>キャンセルをするときに必要になるパスワード「{$participant.hash}」</p>
+        <rt:if param="{$participant.mail}">
+        <p>入力されたメールアドレスに、パスワードを送信しました。</p>
+        </rt:if>
+        <p>
+          イベントで会う日を楽しみにしています！
+        </p>
+        <a href="{$rhaco.url()}">TOPへ戻る</a>
+    </p>
+</div>
+</rt:block>

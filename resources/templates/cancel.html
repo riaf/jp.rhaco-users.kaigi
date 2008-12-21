@@ -1,0 +1,15 @@
+<rt:extends href="index.html" />
+<rt:block name="main">
+<div class="entry">
+    <h3>参加解除する</h3>
+    
+    <form action="{$rhaco.page('cancel')}" method="post" rt:reference="true">
+      <input type="hidden" name="id" />
+      <dl>
+        <dt>キャンセル用パスワード</dt>
+        <dd><input type="text" name="pass" /></dd>
+        <dd><input type="submit" value="キャンセル" /></dd>
+      </dl>
+    </form>
+</div>
+</rt:block>
