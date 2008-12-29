@@ -17,6 +17,9 @@
         <title>答え</title>
         <data>rhaco</data>
     </input>
+    <text name="EXTRA_SUB">
+        <title>sub</title>
+    </text>
     <database name="kaigi">
         <table name="event">
             <column name="id" />

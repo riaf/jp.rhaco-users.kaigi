@@ -33,7 +33,7 @@
                   Last Updated: {$f.dateformat($event.updated, 'Y.m.d H:i')}</p>
             </div>
             <div class="entry">
-                <h3>参加者</h3>
+                <h3>参加者 (<?php echo count($event->dependParticipants); ?> / {$event.maxParticipant})</h3>
                 <rt:if param="{$event.dependParticipants}">
                 <dl class="member">
                   <rt:loop param="{$event.dependParticipants}" var="p">
@@ -72,93 +72,7 @@
         </div>
         
         <div id="sub">
-            <!-- timer -->
-            <div id="dlt">
-              <p class="title">rhaco kaigiまであと</p>
-              <p id="dlt-timer"></p>
-              <p class="powered"><a href="http://deadlinetimer.com/" target="_blank">inspired deadlinetimer.com</a></p>
-            </div>
-            <!-- stylesheet -->
-            <style type="text/css">
-              #dlt {
-                text-align: center;
-                font-size: 20px;
-                width: 200px;
-                border: 1px solid #ccc;
-                background: #eee;
-                padding: 0;
-              }
-              #dlt .title {
-                margin: 0;
-                background: #333;
-                color: #eee;
-                font-size: 16px;
-                font-weight: bold;
-              }
-              #dlt .powered {
-                text-align: right;
-                font-size: 12px;
-                margin: 0 5px;
-              }
-              #dlt #dlt-timer {
-                margin: 0;
-              }
-              #dlt #dlt-timer .day, #dlt #dlt-timer .hour, #dlt #dlt-timer .minute {
-                margin: 0 2.5px;
-              }
-              #dlt #dlt-timer .sec, #dlt #dlt-timer .msec {
-                font-size: 25px;
-              }
-              #dlt #dlt-timer .dlt-ac {
-                font-size: 30px;
-                font-weight: bold;
-                color: #ff1493;
-              }
-              #dlt #dlt-timer .finish {
-                font-size: 30px;
-                font-weight: bold;
-                color: #f00;
-              }
-            </style>
-
-            <!-- javascript -->
-            <script type="text/javascript">
-            window.onload = function(){
-              var dlt = document.getElementById('dlt');
-              var area = document.getElementById('dlt-timer');
-              var timer = setInterval(
-                function (){
-                  var to = new Date();
-                  var from = new Date(2009, 0, 17, 14, 00, 00 );
-
-                  if (to.getTime() > from.getTime()) {
-                    area.innerHTML = '<span class="finish">＼(＾o＾)／</span>';
-                    clearInterval(timer);
-                    return 0;
-                  }
-                  var ts = Math.floor(to.getTime() / 1000);
-                  var ts_diff = Math.floor(from.getTime() / 1000) - ts;
-
-                  var d = Math.floor(ts_diff/(24*60*60));
-                  var h = Math.floor(ts_diff%(24*60*60)/(60*60));
-                  var m = Math.floor(ts_diff%(24*60*60)/60) % 60;
-                  var s = (Math.floor(ts_diff%(24*60*60)) % 60 % 60).toString();
-                  var ms = Math.floor((1000 - to.getMilliseconds() / 100)).toString();
-                  var extra_class = (d == 0) ? 'dlt-ac': '';
-                  area.innerHTML = 
-                    '<span class="'+ extra_class +'">'
-                    + ((d == 0)? '' : '<span class="day">'+ d.toString() +'日</span>')
-                    + ((h == 0)? '' : '<span class="hour">'+  h.toString() +'時間</span>')
-                    + '<span class="minute">'+ m.toString() +'分</span><br />'
-                    + '<span class="sec">'+ ('00' + s).substr(s.length, 2) +'.</span>'
-                    + '<span class="msec">'+ ('0' +ms).substr(ms.length, 1) +'秒</span>'
-                    + '</span>';
-                },
-                100
-              );
-            }
-            </script>
-            <!-- /timer -->
+            {$rhaco.constant('EXTRA_SUB')}
             
             <p class="info">rhaco kaigi 参加者募集をしてみます。<br />
             詳細決まってないのに参加者募集するとかどうなってるんですかね！</p>
